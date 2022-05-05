@@ -14,6 +14,7 @@ class verify(commands.Cog):
             print(channel)
             print("channel is none")
             return
+
         await channel.purge(limit=100)
 
         class check(discord.ui.View):
