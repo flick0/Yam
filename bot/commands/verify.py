@@ -9,9 +9,7 @@ class verify(commands.Cog):
         self.bot: bot.yam = bot
 
     async def on_ready(self):
-        print("got ready")
         channel = self.bot.get_channel(config.channel("verification"))
-        print(channel)
         if channel is None:
             print(channel)
             print("channel is none")

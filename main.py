@@ -1,8 +1,10 @@
 #import threading
 from bot import bot
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 print("launching...")
 if __name__ == "__main__":
-    # bot.run(os.environ["TOKEN"])
-    bot.run("OTUxODE2ODc3NDQ3OTc0OTIz.Yis-iw.Fyh3C2XM3Ud2Jm12ZNErbvbjRCk")
+    bot.run(os.getenv("FLICKO_YAM_TOKEN"))
