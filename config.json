@@ -1,0 +1,14 @@
+{
+    "channels":{
+        "welcome":971704070463184916,
+        "announcements":971704105036832798,
+        "commands":971704105036832798,
+        "verification":971705314086891530
+    },
+    "messages":{
+        "verification":"verify by pressing the button to get access to the server\ncontact staff if the button doesnt work"
+    },
+    "roles":{
+        "verified":971704640641069056
+    }
+}

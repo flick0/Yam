@@ -1,0 +1,5 @@
+jishaku>=2.4
+git+https://github.com/Rapptz/discord.py#egg=discord-py
+more_itertools==8.10.0
+uvicorn[standard]==0.17.6
+fastapi==0.75.2
