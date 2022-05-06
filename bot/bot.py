@@ -26,6 +26,7 @@ class yam(commands.AutoShardedBot):
                 raise (cog[1])
             else:
                 print(f"Loaded {cog[0]}")
+        super().dispatch("cog_load")
 
     async def send(
         self, ctx, txt=None, *, embed=None, view=None, file=None

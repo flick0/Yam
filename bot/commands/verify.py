@@ -2,20 +2,23 @@ from __config import config
 from bot import bot
 from discord.ext import commands
 import discord
+import asyncio
 
 
 class verify(commands.Cog):
     def __init__(self, bot):
         self.bot: bot.yam = bot
 
-    async def on_ready(self):
+    @commands.Cog.listener()
+    async def on_cog_load(self):
+        print("running on_cog_load [verify]")
         channel = self.bot.get_channel(config.channel("verification"))
         if channel is None:
             print(channel)
             print("channel is none")
             return
 
-        await channel.purge(limit=100)
+        await channel.purge(limit=1)
 
         class check(discord.ui.View):
             def __init__(self):
@@ -37,6 +40,4 @@ class verify(commands.Cog):
 
 
 async def setup(bot):
-    tmp = verify(bot)
-    await bot.add_cog(tmp)
-    await tmp.on_ready()
+    await bot.add_cog(verify(bot))
