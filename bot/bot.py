@@ -3,7 +3,6 @@ from discord.ext import commands
 import os
 import asyncio
 import time
-from db._motor import mongo
 import logger
 
 EMBED_COLOR = 0x2F3136
@@ -29,7 +28,6 @@ class yam(commands.AutoShardedBot):
             else:
                 logger.log(f"Loaded {cog[0]}")
         super().dispatch("cog_load")
-        mongo()
 
     async def send(
         self, ctx, txt=None, *, embed=None, view=None, file=None

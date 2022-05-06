@@ -11,6 +11,8 @@ class watch(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
+        if msg.author.bot:
+            return
         if isinstance(msg.channel, discord.channel.DMChannel):
             self.bot.dispatch("dm", msg)
 
