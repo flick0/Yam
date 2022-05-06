@@ -3,6 +3,8 @@ from discord.ext import commands
 import os
 import asyncio
 import time
+from db._motor import mongo
+import logger
 
 EMBED_COLOR = 0x2F3136
 
@@ -17,16 +19,17 @@ class yam(commands.AutoShardedBot):
 
     async def on_ready(self):
         """run when bot is ready"""
-        print(f"{self.user} is ready!")
+        logger.log(f"{self.user} is ready!")
         await self.change_presence(activity=discord.Game(name="!help"))
 
         async for cog in self.load_all():
             if cog[1] is not None:
-                print(f"Failed to load {cog[0]}: {cog[1]}")
+                logger.warn(f"Failed to load {cog[0]}: {cog[1]}")
                 raise (cog[1])
             else:
-                print(f"Loaded {cog[0]}")
+                logger.log(f"Loaded {cog[0]}")
         super().dispatch("cog_load")
+        mongo()
 
     async def send(
         self, ctx, txt=None, *, embed=None, view=None, file=None

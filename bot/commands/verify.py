@@ -3,6 +3,7 @@ from bot import bot
 from discord.ext import commands
 import discord
 import asyncio
+import logger
 
 
 class verify(commands.Cog):
@@ -11,11 +12,9 @@ class verify(commands.Cog):
 
     @commands.Cog.listener()
     async def on_cog_load(self):
-        print("running on_cog_load [verify]")
         channel = self.bot.get_channel(config.channel("verification"))
         if channel is None:
-            print(channel)
-            print("channel is none")
+            logger.warn(f"verification channel is none: {channel}")
             return
 
         await channel.purge(limit=1)
@@ -40,7 +39,7 @@ class verify(commands.Cog):
         while True:
             await asyncio.sleep(170)
             t = await msg.reply("```refreshing button```")
-            print("refresh-")
+            logger.log("refreshing verify button")
             await msg.delete()
             msg = await channel.send(
                 embed=await self.bot.embed(

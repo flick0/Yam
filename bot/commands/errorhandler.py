@@ -1,6 +1,7 @@
 import discord
 import traceback
 import sys
+import logger
 from discord.ext import commands
 
 
@@ -43,7 +44,7 @@ class CommandErrorHandler(commands.Cog):
         else:
             # all errors not returned
 
-            print(
+            logger.warn(
                 "Ignoring exception in command {}:".format(ctx.command), file=sys.stderr
             )
             traceback.print_exception(

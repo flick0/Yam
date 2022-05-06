@@ -14,3 +14,9 @@ class config:
 
     def role(arg, /):
         return config.get_json()["roles"].get(arg)
+
+    def category(arg, /):
+        return config.get_json()["category"].get(arg)
+
+    def guild(arg, /):
+        return config.get_json()["guilds"].get(arg)
