@@ -22,7 +22,7 @@ class verify(commands.Cog):
 
         class check(discord.ui.View):
             def __init__(self):
-                super().__init__()
+                super().__init__(timeout=180)
 
             @discord.ui.button(label="✔", custom_id="verify", style=discord.ButtonStyle.green)
             async def verify(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -30,13 +30,26 @@ class verify(commands.Cog):
                 await interaction.user.add_roles(role)
                 await interaction.response.send_message(f"added role {role.mention}", ephemeral=True)
 
-        await channel.send(
+        msg = await channel.send(
             embed=await self.bot.embed(
                 title="Verification",
                 description=config.message("verification"),
             ),
             view=check()
         )
+        while True:
+            await asyncio.sleep(170)
+            t = await msg.reply("```refreshing button```")
+            print("refresh-")
+            await msg.delete()
+            msg = await channel.send(
+                embed=await self.bot.embed(
+                    title="Verification",
+                    description=config.message("verification"),
+                ),
+                view=check()
+            )
+            await t.delete()
 
 
 async def setup(bot):
