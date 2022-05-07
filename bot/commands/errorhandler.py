@@ -10,6 +10,27 @@ class CommandErrorHandler(commands.Cog):
         self.bot = bot
 
     @commands.command()
+    async def unload(self, ctx, *, cog: str):
+        await ctx.send(
+            f"```yaml\n{await self.bot.unload_cog(f'bot.commands.'+cog)}\n```"
+        )
+
+    @commands.command()
+    async def load(self, ctx, *, cog: str):
+        await ctx.send(
+            f"```yaml\n{await self.bot.load_cog(f'bot.commands.'+cog)}\n```"
+        )
+
+    @commands.command()
+    async def reload(self, ctx, *, cog: str):
+        await ctx.send(
+            f"```yaml\n{await self.bot.unload_cog(f'bot.commands.'+cog)}\n```"
+        )
+        await ctx.send(
+            f"```yaml\n{await self.bot.load_cog(f'bot.commands.'+cog)}\n```"
+        )
+
+    @commands.command()
     async def sus(self, ctx):
         await ctx.send("**ඞ**")
 
@@ -44,8 +65,9 @@ class CommandErrorHandler(commands.Cog):
         else:
             # all errors not returned
 
-            logger.warn(
-                "Ignoring exception in command {}:".format(ctx.command), file=sys.stderr
+            print(
+                "Ignoring exception in command {}:".format(ctx.command),
+                file=sys.stderr,
             )
             traceback.print_exception(
                 type(error), error, error.__traceback__, file=sys.stderr
